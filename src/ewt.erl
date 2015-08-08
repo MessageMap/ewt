@@ -19,7 +19,6 @@ token(Expiration, Claims_, Key, Alg) ->
 
 	B64Signature = sign(?TYPE, alg(Alg), B64Header, B64Claims, Key),
 
-%% 	Now = integer_to_binary(calendar:local_time()),
 	<<HeaderClaims/binary, ".", B64Signature/binary>>.
 
 
