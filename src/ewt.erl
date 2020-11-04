@@ -60,7 +60,7 @@ sign(?TYPE, Alg, Header, Claims, Key) ->
 	Payload = payload(Header, Claims),
 	sign(?TYPE, Alg, Payload, Key).
 sign(?TYPE, Alg, Payload, Key) ->
-	base64url:encode(crypto:hmac(Alg, Key, Payload)).
+	base64url:encode(crypto:mac(Alg, crypto:hmac_hash_algorithm, Key, Payload)).
 
 payload(Header, Claims) ->
 	<<Header/binary, ".", Claims/binary>>.
